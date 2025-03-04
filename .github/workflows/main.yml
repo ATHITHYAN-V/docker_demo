@@ -1,0 +1,21 @@
+name:sync to s3
+on:
+  push:
+   branches:
+    -main
+jobs:
+sync:
+  runs-on:ubuntu-latest
+  steps:
+  -name:Checkout Repository
+  uses:action/checkout@v3
+
+  -name:Configure AWS Credentials
+  uses:aws-action/configure-aws-credentials@v2
+  with:
+     aws-access-Key-id:${{secrets.AKIAQYEI5HVQUE5LOMTH}}
+     aws-secret-access-key${{secrets.JosVbkIGh8A3HKReNsdHokFP9PqenVuJyogQ8Ssd}}
+     aws-region: us-east-1
+
+  -name:sync to S3
+  run:aws s3 sync.s3://docker-demo-devops
